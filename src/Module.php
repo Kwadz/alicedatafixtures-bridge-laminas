@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AliceDataFixtures\Bridge\Laminas;
+namespace AliceDataFixtures;
 
+use AliceDataFixtures\Bridge\Laminas\Factory\ObjectManagerPersisterFactory;
+use AliceDataFixtures\Bridge\Laminas\Factory\PurgerFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Faker\GeneratorFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixtureFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\FixtureBuilder\Denormalizer\Fixture\Chainable\ReferenceRangeNameDenormalizerFactory;
@@ -67,14 +69,12 @@ use AliceDataFixtures\Bridge\Laminas\Factory\Generator\Resolver\Value\Chainable\
 use AliceDataFixtures\Bridge\Laminas\Factory\Generator\Resolver\Value\ValueResolverRegistryFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Loader\SimpleDataLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Loader\SimpleFilesLoaderFactory;
-use AliceDataFixtures\Bridge\Laminas\Factory\ObjectManagerPersisterFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\Chainable\YamlParserFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\DefaultIncludeProcessorFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\ParserRegistryFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\RuntimeCacheParserFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PersisterLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PropertyAccess\StdPropertyAccessorFactory;
-use AliceDataFixtures\Bridge\Laminas\Factory\PurgerFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PurgerLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\SimpleLoaderFactory;
 use Faker\Generator;
