@@ -3,7 +3,7 @@
     "description": "AliceDataFixtures bridge for Laminas.",
     "require": {
         "php": "^7.4 || ^8.0",
-        "theofidry/alice-data-fixtures": "1.5.1"
+        "theofidry/alice-data-fixtures": "^1.5.1"
     },
     "license": "GPL-3.0",
     "autoload": {
