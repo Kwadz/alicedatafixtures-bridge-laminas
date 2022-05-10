@@ -7,7 +7,7 @@
     "require-dev": {
         "theofidry/alice-data-fixtures": "1.5.1"
     },
-    "license": "GPLv3",
+    "license": "GPL-3.0",
     "autoload": {
         "psr-4": {
             "AliceDataFixtures\\Bridge\\Laminas\\": ""
