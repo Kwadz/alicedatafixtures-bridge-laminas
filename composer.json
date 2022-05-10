@@ -2,9 +2,7 @@
     "name": "kwadz/alice-data-fixtures-bridge-laminas",
     "description": "AliceDataFixtures bridge for Laminas.",
     "require": {
-        "php": "^7.4 || ^8.0"
-    },
-    "require-dev": {
+        "php": "^7.4 || ^8.0",
         "theofidry/alice-data-fixtures": "1.5.1"
     },
     "license": "GPL-3.0",
