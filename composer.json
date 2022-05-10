@@ -1,0 +1,23 @@
+{
+    "name": "kwadz/alice-data-fixtures-bridge-laminas",
+    "description": "AliceDataFixtures bridge for Laminas.",
+    "require": {
+        "php": "^7.3 || ~8.0.0 || ~8.1.0"
+    },
+    "require-dev": {
+        "theofidry/alice-data-fixtures": "1.5.1"
+    },
+    "license": "GPLv3",
+    "autoload": {
+        "psr-4": {
+            "AliceDataFixtures\\Bridge\\Laminas\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Richard Carrée",
+            "email": "richard.carree@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
