@@ -5,13 +5,19 @@
         "php": "^7.4 || ^8.0",
         "theofidry/alice-data-fixtures": "^1.5.1",
         "doctrine/orm": "^2.12",
-        "doctrine/data-fixtures": "^1.5"
-
+        "doctrine/data-fixtures": "^1.5",
+        "laminas/laminas-modulemanager": "^2.11"
     },
     "license": "GPL-3.0",
     "autoload": {
         "psr-4": {
             "AliceDataFixtures\\": "src/"
+        }
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "AliceDataFixtures\\ConfigProvider",
+            "module": "AliceDataFixtures"
         }
     },
     "authors": [

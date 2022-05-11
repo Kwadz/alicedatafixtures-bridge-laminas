@@ -1,11 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace AliceDataFixtures;
-
-use AliceDataFixtures\Bridge\Laminas\Factory\ObjectManagerPersisterFactory;
-use AliceDataFixtures\Bridge\Laminas\Factory\PurgerFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Faker\GeneratorFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixtureFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\FixtureBuilder\Denormalizer\Fixture\Chainable\ReferenceRangeNameDenormalizerFactory;
@@ -69,12 +63,14 @@ use AliceDataFixtures\Bridge\Laminas\Factory\Generator\Resolver\Value\Chainable\
 use AliceDataFixtures\Bridge\Laminas\Factory\Generator\Resolver\Value\ValueResolverRegistryFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Loader\SimpleDataLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Loader\SimpleFilesLoaderFactory;
+use AliceDataFixtures\Bridge\Laminas\Factory\ObjectManagerPersisterFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\Chainable\YamlParserFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\DefaultIncludeProcessorFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\ParserRegistryFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\Parser\RuntimeCacheParserFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PersisterLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PropertyAccess\StdPropertyAccessorFactory;
+use AliceDataFixtures\Bridge\Laminas\Factory\PurgerFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\PurgerLoaderFactory;
 use AliceDataFixtures\Bridge\Laminas\Factory\SimpleLoaderFactory;
 use Faker\Generator;
@@ -83,7 +79,6 @@ use Fidry\AliceDataFixtures\Bridge\Doctrine\Purger\Purger;
 use Fidry\AliceDataFixtures\Loader\PersisterLoader;
 use Fidry\AliceDataFixtures\Loader\PurgerLoader;
 use Fidry\AliceDataFixtures\Loader\SimpleLoader;
-use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixture;
 use Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\ReferenceRangeNameDenormalizer;
 use Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleCollectionDenormalizer;
@@ -152,13 +147,82 @@ use Nelmio\Alice\Parser\ParserRegistry;
 use Nelmio\Alice\Parser\RuntimeCacheParser;
 use Nelmio\Alice\PropertyAccess\StdPropertyAccessor;
 
-class Module  implements ConfigProviderInterface
-{
-    /**
-     * {@inheritDoc}
-     */
-    public function getConfig()
-    {
-        return include __DIR__ . '/../config/module.config.php';
-    }
-}
+return [
+    'service_manager' => [
+        'factories' => [
+            PurgerLoader::class => PurgerLoaderFactory::class,
+            PersisterLoader::class => PersisterLoaderFactory::class,
+            SimpleLoader::class => SimpleLoaderFactory::class,
+            SimpleFilesLoader::class => SimpleFilesLoaderFactory::class,
+            RuntimeCacheParser::class => RuntimeCacheParserFactory::class,
+            ParserRegistry::class => ParserRegistryFactory::class,
+            DefaultIncludeProcessor::class => DefaultIncludeProcessorFactory::class,
+            SimpleDataLoader::class => SimpleDataLoaderFactory::class,
+            SimpleBuilder::class => SimpleBuilderFactory::class,
+            SimpleDenormalizer::class => SimpleDenormalizerFactory::class,
+            SimpleFixtureBagDenormalizer::class => SimpleFixtureBagDenormalizerFactory::class,
+            TolerantFixtureDenormalizer::class => TolerantFixtureDenormalizerFactory::class,
+            FixtureDenormalizerRegistry::class => FixtureDenormalizerRegistryFactory::class,
+            ElementFlagParser::class => ElementFlagParserFactory::class,
+            FlagParserRegistry::class => FlagParserRegistryFactory::class,
+            ReferenceRangeNameDenormalizer::class => ReferenceRangeNameDenormalizerFactory::class,
+            SimpleSpecificationsDenormalizer::class => SimpleSpecificationsDenormalizerFactory::class,
+            LegacyConstructorDenormalizer::class => LegacyConstructorDenormalizerFactory::class,
+            ConstructorDenormalizer::class => ConstructorDenormalizerFactory::class,
+            SimpleArgumentsDenormalizer::class => SimpleArgumentsDenormalizerFactory::class,
+            UniqueValueDenormalizer::class => UniqueValueDenormalizerFactory::class,
+            SimpleValueDenormalizer::class => SimpleValueDenormalizerFactory::class,
+            FunctionFixtureReferenceParser::class => FunctionFixtureReferenceParserFactory::class,
+            StringMergerParser::class => StringMergerParserFactory::class,
+            SimpleParser::class => SimpleParserFactory::class,
+            EmptyValueLexer::class => EmptyValueLexerFactory::class,
+            ReferenceEscaperLexer::class => ReferenceEscaperLexerFactory::class,
+            GlobalPatternsLexer::class => GlobalPatternsLexerFactory::class,
+            FunctionLexer::class => FunctionLexerFactory::class,
+            StringThenReferenceLexer::class => StringThenReferenceLexerFactory::class,
+            SubPatternsLexer::class => SubPatternsLexerFactory::class,
+            TokenParserRegistry::class => TokenParserRegistryFactory::class,
+            TolerantFunctionTokenParser::class => TolerantFunctionTokenParserFactory::class,
+            IdentityTokenParser::class => IdentityTokenParserFactory::class,
+            FactoryDenormalizer::class => FactoryDenormalizerFactory::class,
+            CallsWithFlagsDenormalizer::class => CallsWithFlagsDenormalizerFactory::class,
+            FunctionDenormalizer::class => FunctionDenormalizerFactory::class,
+            SimplePropertyDenormalizer::class => SimplePropertyDenormalizerFactory::class,
+            DoublePassGenerator::class => DoublePassGeneratorFactory::class,
+            RemoveConflictingObjectsResolver::class => RemoveConflictingObjectsResolverFactory::class,
+            SimpleFixtureSetResolver::class => SimpleFixtureSetResolverFactory::class,
+            RemoveConflictingParametersParameterBagResolver::class => RemoveConflictingParametersParameterBagResolverFactory::class,
+            SimpleParameterBagResolver::class => SimpleParameterBagResolverFactory::class,
+            ParameterResolverRegistry::class => ParameterResolverRegistryFactory::class,
+            RecursiveParameterResolver::class => RecursiveParameterResolverFactory::class,
+            CompleteObjectGenerator::class => CompleteObjectGeneratorFactory::class,
+            SimpleObjectGenerator::class => SimpleObjectGeneratorFactory::class,
+            ValueResolverRegistry::class => ValueResolverRegistryFactory::class,
+            FunctionCallArgumentResolver::class => FunctionCallArgumentResolverFactory::class,
+            PhpFunctionCallValueResolver::class => PhpFunctionCallValueResolverFactory::class,
+            FixturePropertyReferenceResolver::class => FixturePropertyReferenceResolverFactory::class,
+            StdPropertyAccessor::class => StdPropertyAccessorFactory::class,
+            UnresolvedFixtureReferenceIdResolver::class => UnresolvedFixtureReferenceIdResolverFactory::class,
+            SelfFixtureReferenceResolver::class => SelfFixtureReferenceResolverFactory::class,
+            ExistingInstanceInstantiator::class => ExistingInstanceInstantiatorFactory::class,
+            InstantiatorResolver::class => InstantiatorResolverFactory::class,
+            InstantiatorRegistry::class => InstantiatorRegistryFactory::class,
+            SimpleHydrator::class => SimpleHydratorFactory::class,
+            SymfonyPropertyAccessorHydrator::class => SymfonyPropertyAccessorHydratorFactory::class,
+            SimpleCaller::class => SimpleCallerFactory::class,
+            CallProcessorRegistry::class => CallProcessorRegistryFactory::class,
+            ObjectManagerPersister::class => ObjectManagerPersisterFactory::class,
+            Purger::class => PurgerFactory::class,
+            Generator::class => GeneratorFactory::class,
+            CollectionDenormalizerWithTemporaryFixture::class => CollectionDenormalizerWithTemporaryFixtureFactory::class,
+            SimpleCollectionDenormalizer::class => SimpleCollectionDenormalizerFactory::class,
+            FunctionTokenParser::class => FunctionTokenParserFactory::class,
+            StringTokenParser::class => StringTokenParserFactory::class,
+            NoCallerMethodCallInstantiator::class => NoCallerMethodCallInstantiatorFactory::class,
+            StaticFactoryInstantiator::class => StaticFactoryInstantiatorFactory::class,
+            FakerFunctionCallValueResolver::class => FakerFunctionCallValueResolverFactory::class,
+            UniqueValueResolver::class => UniqueValueResolverFactory::class,
+            YamlParser::class => YamlParserFactory::class,
+        ],
+    ],
+];
